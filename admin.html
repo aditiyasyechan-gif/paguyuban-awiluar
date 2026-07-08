@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Paguyuban Awiluar</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f2f6f3;
+}
+
+
+.header{
+    background:#1b7d46;
+    color:white;
+    padding:18px;
+    text-align:center;
+}
+
+
+.container{
+
+    padding:20px;
+
+}
+
+
+.card{
+
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+
+.card i{
+
+    color:#1b7d46;
+    font-size:25px;
+    margin-right:10px;
+
+}
+
+
+.logout{
+
+    display:block;
+    margin:20px;
+    padding:12px;
+    text-align:center;
+    background:#d9534f;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h2>
+<i class="fa fa-user-shield"></i>
+ADMIN PAGUYUBAN AWILUAR
+</h2>
+
+</div>
+
+
+
+<div class="container">
+
+
+<div class="card">
+<i class="fa fa-users"></i>
+Kelola Data Warga
+</div>
+
+
+<div class="card">
+<i class="fa fa-home"></i>
+Kelola Data Rumah
+</div>
+
+
+<div class="card">
+<i class="fa fa-money-bill"></i>
+Kelola Kas Warga
+</div>
+
+
+<div class="card">
+<i class="fa fa-images"></i>
+Kelola Dokumentasi
+</div>
+
+
+
+</div>
+
+
+
+<a href="../index.html" 
+class="logout"
+onclick="logout()">
+
+<i class="fa fa-sign-out"></i>
+Logout
+
+</a>
+
+
+
+<script>
+
+function logout(){
+
+localStorage.removeItem("admin_login");
+
+}
+
+</script>
+
+
+
+</body>
+</html>

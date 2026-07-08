@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Data Warga</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- BACK BUTTON -->
+
+<a href="admin.html" class="back-btn">
+← Kembali Admin
+</a>
+
+
+
+
+<!-- HEADER -->
+
+<div class="card">
+
+<h2>
+
+<i class="fa fa-users"></i>
+
+Kelola Data Warga
+
+</h2>
+
+
+<p>
+
+Input data kepala keluarga dan anggota warga
+
+</p>
+
+</div>
+
+
+
+
+
+<!-- FORM -->
+
+<div class="card">
+
+
+<h3>
+
+<i class="fa fa-pen"></i>
+
+Form Data Warga
+
+</h3>
+
+
+
+<label>
+Nama Kepala Keluarga
+</label>
+
+<input 
+type="text"
+id="kepala"
+placeholder="Masukkan nama kepala keluarga">
+
+
+
+<br><br>
+
+
+
+<label>
+Nama Anggota Keluarga
+</label>
+
+<input 
+type="text"
+id="anggota"
+placeholder="Contoh: Ani, Budi, Siti">
+
+
+
+<br><br>
+
+
+
+<label>
+Jumlah Anggota (Kepala + Anggota)
+</label>
+
+<input 
+type="number"
+id="jumlah"
+placeholder="Jumlah orang">
+
+
+
+<br><br>
+
+
+
+<label>
+Nomor HP
+</label>
+
+<input 
+type="text"
+id="nohp"
+placeholder="08xxxxxxxxxx">
+
+
+
+<br><br>
+
+
+<button onclick="simpanWarga()">
+
+<i class="fa fa-save"></i>
+
+Simpan Data
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function simpanWarga(){
+
+
+let dataWarga = JSON.parse(
+
+localStorage.getItem("dataWarga")
+
+) || [];
+
+
+
+let warga = {
+
+
+kepala:
+
+document.getElementById("kepala").value,
+
+
+anggota:
+
+document.getElementById("anggota").value,
+
+
+jumlah:
+
+document.getElementById("jumlah").value,
+
+
+nohp:
+
+document.getElementById("nohp").value
+
+
+};
+
+
+
+
+dataWarga.push(warga);
+
+
+
+localStorage.setItem(
+
+"dataWarga",
+
+JSON.stringify(dataWarga)
+
+);
+
+
+
+
+alert("Data warga berhasil disimpan");
+
+
+
+document.getElementById("kepala").value="";
+document.getElementById("anggota").value="";
+document.getElementById("jumlah").value="";
+document.getElementById("nohp").value="";
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
