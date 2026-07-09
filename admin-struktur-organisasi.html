@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Struktur Organisasi</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+.form-box{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0 15px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    background:#3498db;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.judul{
+    color:#3498db;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<a href="admin.html" class="back-btn">
+← Kembali Admin
+</a>
+
+
+<div class="card">
+
+<h2>
+<i class="fa fa-sitemap"></i>
+Kelola Struktur Organisasi
+</h2>
+
+<p>Isi data pengurus paguyuban</p>
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<h3 class="judul">
+Penasehat
+</h3>
+
+<input id="penasehat_nama" placeholder="Nama Penasehat">
+
+<input id="penasehat_hp" placeholder="No HP Penasehat">
+
+
+
+<h3 class="judul">
+Ketua
+</h3>
+
+<input id="ketua_nama" placeholder="Nama Ketua">
+
+<input id="ketua_hp" placeholder="No HP Ketua">
+
+
+
+<h3 class="judul">
+Sekretaris
+</h3>
+
+<input id="sekretaris_nama" placeholder="Nama Sekretaris">
+
+<input id="sekretaris_hp" placeholder="No HP Sekretaris">
+
+
+
+<h3 class="judul">
+Bendahara
+</h3>
+
+<input id="bendahara_nama" placeholder="Nama Bendahara">
+
+<input id="bendahara_hp" placeholder="No HP Bendahara">
+
+
+
+<h3 class="judul">
+Koordinator Wilayah 1
+</h3>
+
+<input id="wil1_1_nama" placeholder="Nama Koordinator 1">
+
+<input id="wil1_1_hp" placeholder="No HP">
+
+
+<input id="wil1_2_nama" placeholder="Nama Koordinator 2">
+
+<input id="wil1_2_hp" placeholder="No HP">
+
+
+<input id="wil1_3_nama" placeholder="Nama Koordinator 3">
+
+<input id="wil1_3_hp" placeholder="No HP">
+
+
+
+
+
+<h3 class="judul">
+Koordinator Wilayah 2
+</h3>
+
+
+<input id="wil2_1_nama" placeholder="Nama Koordinator 1">
+
+<input id="wil2_1_hp" placeholder="No HP">
+
+
+<input id="wil2_2_nama" placeholder="Nama Koordinator 2">
+
+<input id="wil2_2_hp" placeholder="No HP">
+
+
+<input id="wil2_3_nama" placeholder="Nama Koordinator 3">
+
+<input id="wil2_3_hp" placeholder="No HP">
+
+
+
+<button onclick="simpanStruktur()">
+
+Simpan Struktur
+
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function simpanStruktur(){
+
+
+let data = [
+
+"penasehat_nama",
+"penasehat_hp",
+
+"ketua_nama",
+"ketua_hp",
+
+"sekretaris_nama",
+"sekretaris_hp",
+
+"bendahara_nama",
+"bendahara_hp",
+
+"wil1_1_nama",
+"wil1_1_hp",
+"wil1_2_nama",
+"wil1_2_hp",
+"wil1_3_nama",
+"wil1_3_hp",
+
+"wil2_1_nama",
+"wil2_1_hp",
+"wil2_2_nama",
+"wil2_2_hp",
+"wil2_3_nama",
+"wil2_3_hp"
+
+];
+
+
+data.forEach(function(item){
+
+localStorage.setItem(
+"struktur_"+item,
+document.getElementById(item).value
+);
+
+});
+
+
+alert("Struktur berhasil disimpan");
+
+
+}
+
+
+</script>
+
+
+
+</body>
+</html>
