@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Profil</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f1f6f3;
+}
+
+
+.header{
+    background:#1b7d46;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+
+.form-box{
+
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+
+label{
+
+    font-weight:bold;
+    display:block;
+    margin-top:15px;
+
+}
+
+
+input, textarea{
+
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+
+}
+
+
+textarea{
+
+    height:100px;
+    resize:none;
+
+}
+
+
+button{
+
+    margin-top:20px;
+    width:100%;
+    padding:13px;
+    background:#1b7d46;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+
+}
+
+
+.kembali{
+
+    display:block;
+    text-align:center;
+    margin:20px;
+    color:#1b7d46;
+    text-decoration:none;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h2>
+<i class="fa fa-building"></i>
+Kelola Profil Paguyuban
+</h2>
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<label>Nama Organisasi</label>
+<input id="nama" placeholder="Nama Paguyuban">
+
+
+<label>Tahun Berdiri</label>
+<input id="tahun" placeholder="Contoh: 2020">
+
+
+<label>Jumlah Anggota</label>
+<input id="anggota" placeholder="Jumlah anggota">
+
+
+<label>Status</label>
+<input id="status" placeholder="Aktif / Tidak Aktif">
+
+
+<label>Sejarah</label>
+<textarea id="sejarah" placeholder="Cerita sejarah paguyuban"></textarea>
+
+
+<label>Visi</label>
+<textarea id="visi" placeholder="Visi paguyuban"></textarea>
+
+
+<label>Misi</label>
+<textarea id="misi" placeholder="Misi paguyuban"></textarea>
+
+
+<label>Alamat</label>
+<textarea id="alamat" placeholder="Alamat paguyuban"></textarea>
+
+
+<label>Kontak</label>
+<input id="kontak" placeholder="Nomor HP / WhatsApp">
+
+
+<button onclick="simpan()">
+Simpan Profil
+</button>
+
+
+</div>
+
+
+
+<a class="kembali" href="admin.html">
+← Kembali ke Admin
+</a>
+
+
+
+<script>
+
+function simpan(){
+
+localStorage.setItem("profil_nama",
+document.getElementById("nama").value);
+
+localStorage.setItem("profil_tahun",
+document.getElementById("tahun").value);
+
+localStorage.setItem("profil_anggota",
+document.getElementById("anggota").value);
+
+localStorage.setItem("profil_status",
+document.getElementById("status").value);
+
+localStorage.setItem("profil_sejarah",
+document.getElementById("sejarah").value);
+
+localStorage.setItem("profil_visi",
+document.getElementById("visi").value);
+
+localStorage.setItem("profil_misi",
+document.getElementById("misi").value);
+
+localStorage.setItem("profil_alamat",
+document.getElementById("alamat").value);
+
+localStorage.setItem("profil_kontak",
+document.getElementById("kontak").value);
+
+
+alert("Profil berhasil disimpan");
+
+}
+
+</script>
+
+
+</body>
+</html>

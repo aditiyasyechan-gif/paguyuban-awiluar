@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Daftar Rumah</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<style>
+
+body{
+background:#f4f8fb;
+}
+
+
+.form-box,
+.search-box,
+.rumah-card{
+
+background:white;
+margin:20px;
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+
+input{
+
+width:100%;
+padding:13px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+border:1px solid #ddd;
+
+box-sizing:border-box;
+
+font-size:15px;
+
+}
+
+
+input:focus{
+
+outline:none;
+
+border-color:#3498db;
+
+}
+
+
+button{
+
+border:none;
+
+border-radius:20px;
+
+padding:10px 18px;
+
+cursor:pointer;
+
+}
+
+
+.btn-simpan{
+
+width:100%;
+
+background:#3498db;
+
+color:white;
+
+font-size:16px;
+
+}
+
+
+.rumah-header{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+.icon-rumah{
+
+width:50px;
+height:50px;
+
+background:#3498db;
+
+color:white;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:22px;
+
+}
+
+
+.rumah-card{
+
+background:white;
+
+margin:12px 20px;
+
+padding:15px;
+
+border-radius:15px;
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.08);
+
+}
+
+
+.rumah-header{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+
+.icon-rumah{
+
+width:38px;
+
+height:38px;
+
+background:#3498db;
+
+color:white;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:17px;
+
+}
+
+
+
+.rumah-card h3{
+
+font-size:17px;
+
+margin:0;
+
+color:#3498db;
+
+}
+
+
+
+.rumah-card p{
+
+font-size:14px;
+
+margin:4px 0;
+
+color:#555;
+
+}
+
+
+
+.rumah-info{
+
+margin-top:10px;
+
+line-height:1.5;
+
+}
+
+
+
+.btn-edit,
+.btn-hapus{
+
+padding:7px 14px;
+
+font-size:13px;
+
+border-radius:15px;
+
+margin-top:10px;
+
+}
+
+
+.btn-edit{
+
+background:#3498db;
+
+color:white;
+
+margin-right:8px;
+
+}
+
+
+.btn-hapus{
+
+background:#e74c3c;
+
+color:white;
+
+}
+
+.popup{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.45);
+
+align-items:center;
+
+justify-content:center;
+
+}
+
+
+.popup-box{
+
+background:white;
+
+width:85%;
+
+padding:25px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<a href="admin.html" class="back-btn">
+
+← Kembali Admin
+
+</a>
+
+
+
+<div class="card">
+
+<h2>
+
+<i class="fa fa-house"></i>
+
+Kelola Daftar Rumah
+
+</h2>
+
+<p>
+Mengelola data rumah warga
+</p>
+
+</div>
+
+
+
+<div class="form-box">
+
+
+<h3>
+
+<i class="fa fa-plus"></i>
+Input Rumah
+
+</h3>
+
+
+<input id="nama"
+placeholder="Nama Pemilik Rumah">
+
+
+<input id="anggota"
+type="number"
+placeholder="Jumlah Anggota Dalam Rumah"
+oninput="hitungTotal()">
+
+
+
+<input id="total"
+placeholder="Total Penghuni"
+readonly>
+
+
+
+<input id="alamat"
+placeholder="Alamat Rumah">
+
+<input id="nohp"
+placeholder="Nomor HP Pemilik Rumah">
+
+<button class="btn-simpan"
+onclick="simpanData()">
+
+<i class="fa fa-save"></i>
+Simpan Data
+
+</button>
+
+
+</div>
+
+
+
+
+<div class="search-box">
+
+
+<input id="cari"
+
+placeholder="🔍 Cari nama pemilik atau alamat"
+
+onkeyup="tampilkanData()">
+
+
+</div>
+
+
+
+
+<div id="hasil"></div>
+
+
+
+
+<div class="popup" id="popupHapus">
+
+
+<div class="popup-box">
+
+
+<h3>
+
+Hapus Data Rumah?
+
+</h3>
+
+
+<p>
+Apakah yakin ingin menghapus data ini?
+</p>
+
+
+<button class="btn-hapus"
+onclick="hapusSetuju()">
+
+Ya, Hapus
+
+</button>
+
+
+<button class="btn-edit"
+onclick="tutupPopup()">
+
+Batal
+
+</button>
+
+
+</div>
+
+
+</div>
+<script>
+
+
+let rumah = JSON.parse(
+localStorage.getItem("daftarRumah")
+) || [];
+
+
+let editIndex = -1;
+
+let hapusIndex = -1;
+
+
+
+function hitungTotal(){
+
+let anggota =
+Number(document.getElementById("anggota").value) || 0;
+
+
+document.getElementById("total").value =
+(anggota + 1) + " Orang";
+
+
+}
+
+
+
+
+function simpanData(){
+
+
+let data = {
+
+
+nama:
+document.getElementById("nama").value,
+
+
+anggota:
+document.getElementById("anggota").value,
+
+
+total:
+document.getElementById("total").value,
+
+
+alamat:
+document.getElementById("alamat").value,
+
+
+nohp:
+document.getElementById("nohp").value
+
+
+};
+
+
+
+if(data.nama=="" || data.alamat==""){
+
+alert("Nama pemilik dan alamat harus diisi");
+
+return;
+
+}
+
+
+
+
+if(editIndex == -1){
+
+
+rumah.push(data);
+
+
+}else{
+
+
+rumah[editIndex]=data;
+
+editIndex=-1;
+
+
+}
+
+
+
+
+localStorage.setItem(
+
+"daftarRumah",
+
+JSON.stringify(rumah)
+
+);
+
+
+
+kosongkanForm();
+
+
+tampilkanData();
+
+
+
+alert("Data rumah berhasil disimpan");
+
+
+
+}
+
+
+
+
+
+
+
+function tampilkanData(){
+
+
+let hasil="";
+
+
+let cari =
+
+document.getElementById("cari")
+.value
+.toLowerCase();
+
+
+
+
+rumah.forEach(function(item,index){
+
+
+
+if(
+
+item.nama.toLowerCase()
+.includes(cari)
+
+||
+
+item.alamat.toLowerCase()
+.includes(cari)
+
+){
+
+
+
+hasil += `
+
+
+<div class="rumah-card">
+
+
+
+<div class="rumah-header">
+
+
+<div class="icon-rumah">
+
+<i class="fa fa-house"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+
+${item.nama}
+
+</h3>
+
+<p>
+Pemilik Rumah
+</p>
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="rumah-info">
+
+
+<p>
+
+👥 Jumlah Anggota :
+
+${item.anggota} Orang
+
+</p>
+
+
+<p>
+
+👨‍👩‍👧 Total Penghuni :
+
+${item.total}
+
+</p>
+
+
+<p>
+
+📍 ${item.alamat}
+
+</p>
+
+
+
+</div>
+
+
+
+
+<button class="btn-edit"
+
+onclick="editData(${index})">
+
+✏️ Edit
+
+</button>
+
+
+
+
+<button class="btn-hapus"
+
+onclick="bukaPopup(${index})">
+
+🗑 Hapus
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+}
+
+
+});
+
+
+
+document.getElementById("hasil").innerHTML = hasil;
+
+
+}
+
+
+
+
+
+
+
+function editData(index){
+
+
+let data = rumah[index];
+
+
+
+document.getElementById("nama").value =
+data.nama;
+
+
+document.getElementById("anggota").value =
+data.anggota;
+
+
+document.getElementById("total").value =
+data.total;
+
+
+document.getElementById("alamat").value =
+data.alamat;
+
+
+
+editIndex=index;
+
+
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+
+}
+
+
+
+
+
+
+
+function bukaPopup(index){
+
+
+hapusIndex=index;
+
+
+document.getElementById("popupHapus")
+.style.display="flex";
+
+
+}
+
+
+
+
+
+
+function tutupPopup(){
+
+
+document.getElementById("popupHapus")
+.style.display="none";
+
+
+}
+
+
+
+
+
+
+function hapusSetuju(){
+
+
+
+if(hapusIndex!=-1){
+
+
+
+rumah.splice(hapusIndex,1);
+
+
+
+localStorage.setItem(
+
+"daftarRumah",
+
+JSON.stringify(rumah)
+
+);
+
+
+
+tampilkanData();
+
+
+
+}
+
+
+tutupPopup();
+
+
+
+}
+
+
+
+
+
+
+
+function kosongkanForm(){
+
+
+document.getElementById("nama").value="";
+
+
+document.getElementById("anggota").value="";
+
+
+document.getElementById("total").value="";
+
+
+document.getElementById("alamat").value="";
+
+
+}
+
+
+
+
+
+
+tampilkanData();
+
+
+
+</script>
+
+
+</body>
+
+</html>

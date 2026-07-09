@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Paguyuban</title>
+
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+
+  /* BIRU PUDAR MODERN */
+  background: linear-gradient(135deg, #eaf2ff, #f7faff, #eef5ff);
+}
+
+/* HERO HEADER (SAMA SEPERTI MENU LAIN) */
+.hero-card{
+  background: linear-gradient(135deg, #ffffff, #eef3ff);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.badge{
+  display: inline-block;
+  padding: 5px 10px;
+  background: #e8ecff;
+  color: #3b5bdb;
+  font-size: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.hero-card h1{
+  margin: 5px 0;
+  font-size: 20px;
+}
+
+.hero-card p{
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+/* GRID MENU */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+/* CARD MENU */
+.card{
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card:hover{
+  transform: translateY(-5px);
+}
+
+.card i{
+  font-size: 20px;
+  color: #3b5bdb;
+}
+
+.card h3{
+  margin: 0;
+  font-size: 15px;
+}
+
+.card p{
+  margin: 0;
+  font-size: 12px;
+  color: #777;
+}
+</style>
+
+</head>
+
+<body>
+<a href="../../index.html" class="back-btn">
+  ← Kembali ke Home
+</a>
+<!-- HEADER -->
+<div class="hero-card">
+  <div class="badge">Galeri</div>
+
+  <h1>Galeri Paguyuban</h1>
+
+  <p>Dokumentasi kegiatan warga dalam bentuk foto</p>
+</div>
+
+<!-- MENU GALERI -->
+<div class="grid">
+
+  <a href="islam.html" class="card">
+    <i class="fa fa-mosque"></i>
+    <h3>Hari Besar Islam</h3>
+    <p>Maulid, pengajian, dll</p>
+  </a>
+
+  <a href="nasional.html" class="card">
+    <i class="fa fa-flag"></i>
+    <h3>Hari Besar Nasional</h3>
+    <p>17 Agustus, upacara</p>
+  </a>
+
+  <a href="kerja-bakti.html" class="card">
+    <i class="fa fa-broom"></i>
+    <h3>Kerja Bakti</h3>
+    <p>Bersih lingkungan</p>
+  </a>
+
+  <a href="lain-lain.html" class="card">
+    <i class="fa fa-folder"></i>
+    <h3>Lain-lain</h3>
+    <p>Kegiatan umum</p>
+  </a>
+
+</div>
+
+</body>
+</html>

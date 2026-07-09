@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Warga</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- BACK BUTTON -->
+<a href="../index.html" class="back-btn">
+  ← Kembali ke Home
+</a>
+
+<!-- HEADER -->
+<div class="card">
+  <h2>Data Warga</h2>
+  <p>Data kepala keluarga, anggota keluarga, dan jumlah keluarga</p>
+</div>
+
+<!-- SEARCH BOX -->
+<div class="card">
+  <input type="text" id="searchWarga" placeholder="Cari nama kepala keluarga..."
+  style="width:100%; padding:10px; border-radius:10px; border:1px solid #ccc;">
+</div>
+
+<!-- DATA WARGA -->
+<div class="profile-grid" id="daftarWarga">
+
+</div>
+
+<!-- SCRIPT SEARCH (WAJIB PALING BAWAH) -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+let dataWarga = JSON.parse(
+
+localStorage.getItem("dataWarga")
+
+) || [];
+
+
+
+let tempat = document.getElementById("daftarWarga");
+
+
+
+function tampilkanWarga(data){
+
+
+let hasil = "";
+
+
+
+data.forEach(function(item){
+
+
+hasil += `
+
+
+<div class="info-box warga-item">
+
+<i class="fa fa-users"></i>
+
+
+<div>
+
+
+<h3>
+
+${item.nama}
+
+</h3>
+
+
+<p>
+
+Jenis Kelamin : ${item.kelamin}
+
+</p>
+
+
+<p>
+
+No HP : ${item.nohp}
+
+</p>
+
+
+<p>
+
+Keterangan : ${item.keterangan}
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+});
+
+
+
+tempat.innerHTML = hasil;
+
+
+
+}
+
+
+
+
+tampilkanWarga(dataWarga);
+
+
+
+
+
+// SEARCH
+
+document.getElementById("searchWarga")
+
+.addEventListener("input", function(){
+
+
+
+let cari = this.value.toLowerCase();
+
+
+
+let hasil = dataWarga.filter(function(item){
+
+
+
+return (
+
+item.nama.toLowerCase().includes(cari)
+
+||
+
+item.kelamin.toLowerCase().includes(cari)
+
+||
+
+item.keterangan.toLowerCase().includes(cari)
+
+);
+
+
+
+});
+
+
+
+tampilkanWarga(hasil);
+
+
+
+});
+
+
+
+});
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <script>
+
+if(localStorage.getItem("admin_login") !== "true"){
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Paguyuban Awiluar</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f1f6f3;
+}
+
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#1b7d46,#2ecc71);
+    color:white;
+    padding:25px 20px;
+    border-radius:0 0 25px 25px;
+}
+
+
+.header h2{
+    margin:0;
+    font-size:22px;
+}
+
+
+.header p{
+    margin:8px 0 0;
+    opacity:.9;
+}
+
+
+
+/* AREA MENU */
+
+.container{
+
+    padding:20px;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+
+}
+
+
+
+/* CARD */
+
+.card{
+
+    background:white;
+    text-decoration:none;
+    color:#333;
+
+    padding:22px 10px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.card i{
+
+    font-size:32px;
+    color:#1b7d46;
+    margin-bottom:12px;
+
+}
+
+
+
+.card span{
+
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+
+}
+
+
+
+/* LOGOUT */
+
+.logout{
+
+    display:block;
+
+    margin:20px;
+
+    padding:14px;
+
+    text-align:center;
+
+    background:#e74c3c;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:15px;
+
+    font-weight:bold;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h2>
+<i class="fa fa-user-shield"></i>
+ADMIN PANEL
+</h2>
+
+<p>
+Paguyuban Awiluar
+</p>
+
+</div>
+
+
+
+<div class="container">
+
+
+<a href="admin-profil.html" class="card">
+<i class="fa fa-user"></i>
+<span>Kelola Profil</span>
+</a>
+
+
+<a href="admin-struktur-organisasi.html" class="card">
+
+<i class="fa fa-sitemap"></i>
+
+<span>Struktur Organisasi</span>
+
+</a>
+
+
+<a href="admin-daftar-rumah.html" class="card">
+
+<i class="fa fa-house"></i>
+
+<span>Daftar Rumah</span>
+
+</a>
+
+<a href="admin-warga.html" class="card">
+
+<i class="fa fa-users"></i>
+
+<span>Data Warga</span>
+
+</a>
+
+<a href="admin-kas-warga.html" class="card">
+
+<i class="fa fa-wallet"></i>
+
+<span>Kas Warga</span>
+
+</a>
+
+
+<a href="admin-galeri.html" class="card">
+<i class="fa fa-images"></i>
+<span>Galeri</span>
+</a>
+
+
+<a href="admin-pengumuman.html" class="card">
+<i class="fa fa-bullhorn"></i>
+<span>Pengumuman</span>
+</a>
+
+
+<a href="admin-laporan.html" class="card">
+<i class="fa fa-file-alt"></i>
+<span>Laporan</span>
+</a>
+
+
+</div>
+
+
+
+<a href="../index.html" class="logout" onclick="logout()">
+
+<i class="fa fa-sign-out-alt"></i>
+Logout
+
+</a>
+
+
+
+<script>
+
+function logout(){
+
+localStorage.removeItem("admin_login");
+
+}
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Laporan Kegiatan</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+body{
+background:#f4f8fb;
+}
+
+.container{
+
+padding:20px;
+
+}
+
+
+.card{
+
+background:white;
+
+padding:20px;
+
+margin-bottom:20px;
+
+border-radius:20px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+
+.search{
+
+width:100%;
+
+padding:13px;
+
+border-radius:15px;
+
+border:1px solid #ddd;
+
+margin-bottom:20px;
+
+font-size:15px;
+
+}
+
+
+.judul{
+
+color:#3498db;
+
+margin-top:0;
+
+}
+
+
+.info{
+
+line-height:1.7;
+
+color:#555;
+
+}
+
+
+.kosong{
+
+text-align:center;
+
+padding:30px;
+
+color:#777;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<a href="../index.html" class="back-btn">
+← Kembali
+</a>
+
+
+<div class="container">
+
+
+<div class="card">
+
+<h2>
+📄 Laporan Kegiatan Warga
+</h2>
+
+<p>
+Informasi laporan kegiatan dan penggunaan anggaran.
+</p>
+
+</div>
+
+
+
+<input 
+class="search"
+id="cari"
+placeholder="🔍 Cari laporan..."
+onkeyup="tampilkanLaporan()">
+
+
+
+<div id="hasil"></div>
+
+
+</div>
+
+
+
+
+<script>
+
+
+let dataLaporan = JSON.parse(
+
+localStorage.getItem("dataLaporan")
+
+) || [];
+
+
+
+
+
+function tampilkanLaporan(){
+
+
+let hasil="";
+
+
+let cari = document
+
+.getElementById("cari")
+
+.value
+
+.toLowerCase();
+
+
+
+
+dataLaporan.forEach(function(item){
+
+
+let teks = (
+
+item.kegiatan +
+
+item.laporan
+
+)
+
+.toLowerCase();
+
+
+
+
+
+if(teks.includes(cari)){
+
+
+
+hasil += `
+
+
+
+<div class="card">
+
+
+<h3 class="judul">
+
+${item.kegiatan}
+
+</h3>
+
+
+
+<div class="info">
+
+
+<p>
+<b>Anggaran :</b>
+Rp ${Number(item.anggaran).toLocaleString("id-ID")}
+</p>
+
+
+<p>
+<b>Pengeluaran :</b>
+Rp ${Number(item.pengeluaran).toLocaleString("id-ID")}
+</p>
+
+
+
+<p>
+<b>Sisa Anggaran :</b>
+${item.sisa}
+</p>
+
+
+
+<p>
+
+<b>Laporan :</b><br>
+
+${item.laporan.replace(/\n/g,"<br>")}
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
+
+
+`;
+
+
+
+}
+
+
+});
+
+
+
+
+
+if(hasil==""){
+
+
+hasil=`
+
+<div class="card kosong">
+
+Belum ada laporan kegiatan.
+
+</div>
+
+`;
+
+}
+
+
+document.getElementById("hasil")
+
+.innerHTML=hasil;
+
+
+}
+
+
+
+
+
+tampilkanLaporan();
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
