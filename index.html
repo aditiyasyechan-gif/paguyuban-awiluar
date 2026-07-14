@@ -1,325 +1,137 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paguyuban Awiluar</title>
-  <script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Paguyuban</title>
 
-if(localStorage.getItem("login") !== "true"){
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-window.location.href="pages/login.html";
+<style>
+body{
+  font-family: Arial, sans-serif;
 
+  /* BIRU PUDAR MODERN */
+  background: linear-gradient(135deg, #eaf2ff, #f7faff, #eef5ff);
 }
 
-window.location.href="pages/login.html";
-
+/* HERO HEADER (SAMA SEPERTI MENU LAIN) */
+.hero-card{
+  background: linear-gradient(135deg, #ffffff, #eef3ff);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-</script>
+.badge{
+  display: inline-block;
+  padding: 5px 10px;
+  background: #e8ecff;
+  color: #3b5bdb;
+  font-size: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 
-  <link rel="stylesheet" href="style.css">
+.hero-card h1{
+  margin: 5px 0;
+  font-size: 20px;
+}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+.hero-card p{
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+/* GRID MENU */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+/* CARD MENU */
+.card{
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card:hover{
+  transform: translateY(-5px);
+}
+
+.card i{
+  font-size: 20px;
+  color: #3b5bdb;
+}
+
+.card h3{
+  margin: 0;
+  font-size: 15px;
+}
+
+.card p{
+  margin: 0;
+  font-size: 12px;
+  color: #777;
+}
+</style>
+
 </head>
+
 <body>
-
-<div class="sidebar" id="sidebar">
-
-  <!-- LOGO -->
-  <div class="logo-box">
-    <h2>PA</h2>
-    <p>Paguyuban Awiluar</p>
-  </div>
-
-  <!-- MENU UTAMA -->
-  <a href="index.html" class="menu active">
-    <i class="fa fa-home"></i><span>Home</span>
-  </a>
-
-  <a href="pages/profil.html" class="menu">
-    <i class="fa fa-user"></i><span>Profil</span>
-  </a>
-
-  <a href="pages/struktur-organisasi.html" class="menu">
-    <i class="fa fa-sitemap"></i><span>Struktur Organisasi</span>
-  </a>
-
-  <a href="pages/daftar-rumah.html" class="menu">
-    <i class="fa fa-house"></i><span>Daftar Rumah</span>
-  </a>
-
-  <a href="pages/warga.html" class="menu">
-    <i class="fa fa-users"></i><span>Data Warga</span>
-  </a>
-
-  <a href="pages/kas-warga.html" class="menu">
-    <i class="fa fa-money-bill"></i><span>Kas Warga</span>
-  </a>
-  
-  <a href="pages/galeri/index.html" class="menu">
-  <i class="fa fa-image"></i><span>Galeri</span>
+<a href="../../index.html" class="back-btn">
+  ← Kembali ke Home
 </a>
+<!-- HEADER -->
+<div class="hero-card">
+  <div class="badge">Galeri</div>
 
-  <a href="pages/pengumuman.html" class="menu">
-    <i class="fa fa-bullhorn"></i><span>Pengumuman</span>
+  <h1>Galeri Paguyuban</h1>
+
+  <p>Dokumentasi kegiatan warga dalam bentuk foto</p>
+</div>
+
+<!-- MENU GALERI -->
+<div class="grid">
+
+  <a href="islam.html" class="card">
+    <i class="fa fa-mosque"></i>
+    <h3>Hari Besar Islam</h3>
+    <p>Maulid, pengajian, dll</p>
   </a>
 
-  <a href="pages/laporan.html" class="menu">
-    <i class="fa fa-file-alt"></i><span>Laporan</span>
+  <a href="nasional.html" class="card">
+    <i class="fa fa-flag"></i>
+    <h3>Hari Besar Nasional</h3>
+    <p>17 Agustus, upacara</p>
   </a>
-  
 
-  <!-- PEMISAH -->
-  <div style="margin-top:20px;"></div>
-
-  <!-- LOGIN ADMIN (PALING BAWAH) -->
-  <a href="pages/login.html" class="menu login">
-    <i class="fa fa-lock"></i><span>Login Admin</span>
+  <a href="kerja-bakti.html" class="card">
+    <i class="fa fa-broom"></i>
+    <h3>Kerja Bakti</h3>
+    <p>Bersih lingkungan</p>
   </a>
-  <a href="pages/login.html" class="logout-btn">Logout</a>
+
+  <a href="lain-lain.html" class="card">
+    <i class="fa fa-folder"></i>
+    <h3>Lain-lain</h3>
+    <p>Kegiatan umum</p>
+  </a>
 
 </div>
-
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-<div class="content">
-
-  <button class="btn" onclick="toggleMenu()">☰</button>
-
-  <div class="hero-card">
-  <div class="badge">Dashboard</div>
-
-  <h1 class="title">
-      WEBSITE PAGUYUBAN AWILUAR <span></span>
-  </h1>
-
-  <p class="subtitle">
-    Sistem Informasi Warga Awiluar Desa Sindangkempeng-Greged
-  </p>
-</div>
-<!-- DASHBOARD UTAMA -->
-<div class="dashboard">
-  
-
-  <!-- JUMLAH RUMAH -->
-  <div class="card-box">
-
-<i class="fa fa-house"></i>
-
-<h3>Jumlah Rumah</h3>
-
-<p id="jumlahRumah">
-0 Rumah
-</p>
-
-</div>
-
-  <!-- JUMLAH WARGA (GABUNG) -->
-
-<div class="card-box">
-
-<i class="fa fa-users"></i>
-
-<div>
-<span>Jumlah Warga</span>
-<h3 id="jumlahWarga">0 Orang</h3>
-</div>
-
-</div>
-
-
-<div class="card-box">
-
-<i class="fa fa-mars"></i>
-
-<div>
-<span>Laki-laki</span>
-<h3 id="jumlahLaki">0 Orang</h3>
-</div>
-
-</div>
-
-
-<div class="card-box">
-
-<i class="fa fa-venus"></i>
-
-<div>
-<span>Perempuan</span>
-<h3 id="jumlahPerempuan">0 Orang</h3>
-</div>
-
-
-</div>
-  <!-- UANG KAS -->
-  <div class="info-box">
-
-<i class="fa fa-wallet"></i>
-
-<div>
-
-<h3>Kas Warga</h3>
-
-<p id="dashboardKas">
-
-Rp 0
-
-</p>
-
-</div>
-
-</div>
-
-  <!-- PENGUMUMAN -->
-<div class="card-box">
-  <i class="fa fa-bullhorn"></i>
-  <div>
-    <h3 id="jumlahPengumuman">0</h3>
-    <p>Pengumuman</p>
-  </div>
-</div>
-
-</div>
-</div>
-<script src="script.js"></script>
-
-<script>
-
-let daftarRumah = JSON.parse(
-localStorage.getItem("daftarRumah")
-) || [];
-
-
-document.getElementById("jumlahRumah").innerHTML =
-daftarRumah.length + " Rumah";
-
-
-</script>
-
-<script>
-
-let dataWarga = JSON.parse(
-
-localStorage.getItem("dataWarga")
-
-) || [];
-
-
-// jumlah semua warga
-
-document.getElementById("jumlahWarga").innerHTML =
-
-dataWarga.length + " Orang";
-
-
-
-// jumlah laki laki
-
-let laki = dataWarga.filter(function(item){
-
-return item.kelamin == "Laki-laki";
-
-}).length;
-
-
-
-document.getElementById("jumlahLaki").innerHTML =
-
-laki + " Orang";
-
-
-
-
-// jumlah perempuan
-
-let perempuan = dataWarga.filter(function(item){
-
-return item.kelamin == "Perempuan";
-
-}).length;
-
-
-
-document.getElementById("jumlahPerempuan").innerHTML =
-
-perempuan + " Orang";
-
-
-</script>
-
-<script>
-
-
-let dataKas = JSON.parse(
-
-localStorage.getItem("dataKas")
-
-) || [];
-
-
-
-let masuk = 0;
-
-let keluar = 0;
-
-
-
-dataKas.forEach(function(item){
-
-
-let jumlah = Number(item.jumlah);
-
-
-
-if(item.jenis=="Pemasukan"){
-
-
-masuk += jumlah;
-
-
-}else{
-
-
-keluar += jumlah;
-
-
-}
-
-
-});
-
-
-
-
-let saldo = masuk - keluar;
-
-
-
-document.getElementById("dashboardKas").innerHTML =
-
-"Rp " + saldo.toLocaleString("id-ID");
-
-
-
-</script>
-
-<script>
-
-let dataPengumuman = JSON.parse(
-
-localStorage.getItem("dataPengumuman")
-
-) || [];
-
-
-
-document.getElementById("jumlahPengumuman").innerHTML =
-
-dataPengumuman.length;
-
-
-</script>
 
 </body>
 </html>
