@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Pengumuman</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<style>
+
+body{
+background:#f4f8fb;
+}
+
+
+.box{
+
+background:white;
+
+margin:20px;
+
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+}
+
+
+input,
+textarea{
+
+width:100%;
+
+padding:13px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+border:1px solid #ddd;
+
+box-sizing:border-box;
+
+font-size:15px;
+
+}
+
+
+textarea{
+
+height:120px;
+
+resize:none;
+
+}
+
+
+button{
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:20px;
+
+cursor:pointer;
+
+}
+
+
+.btn-simpan{
+
+width:100%;
+
+background:#3498db;
+
+color:white;
+
+font-size:16px;
+
+}
+
+
+.btn-hapus{
+
+background:#e74c3c;
+
+color:white;
+
+margin-top:10px;
+
+}
+
+
+.info{
+
+background:#f8f9fa;
+
+padding:15px;
+
+border-radius:15px;
+
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<a href="admin.html" class="back-btn">
+
+← Kembali Admin
+
+</a>
+
+
+
+<div class="box">
+
+<h2>
+📢 Kelola Pengumuman
+</h2>
+
+
+<p>
+Buat pengumuman aktif untuk warga
+</p>
+
+
+</div>
+
+
+
+
+<div class="box">
+
+
+<h3>
+Tambah Pengumuman
+</h3>
+
+
+
+<input 
+id="judul"
+placeholder="Judul Pengumuman">
+
+
+
+<textarea
+id="isi"
+placeholder="Isi Pengumuman">
+</textarea>
+
+
+
+<label>
+Mulai Berlaku
+</label>
+
+<input
+type="date"
+id="mulai">
+
+
+
+<label>
+Berakhir
+</label>
+
+<input
+type="date"
+id="selesai">
+
+
+
+
+
+<button 
+class="btn-simpan"
+onclick="simpanPengumuman()">
+
+💾 Simpan Pengumuman
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="box">
+
+
+<h3>
+Pengumuman Aktif
+</h3>
+
+
+<div id="hasil"></div>
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+let dataPengumuman = JSON.parse(
+
+localStorage.getItem("dataPengumuman")
+
+) || [];
+
+
+
+
+
+function simpanPengumuman(){
+
+
+let data={
+
+judul:
+document.getElementById("judul").value,
+
+isi:
+document.getElementById("isi").value,
+
+tanggalBuat:
+new Date().toLocaleDateString("id-ID", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric"
+}),
+
+mulai:
+document.getElementById("mulai").value,
+
+selesai:
+document.getElementById("selesai").value
+};
+
+
+
+if(
+data.judul=="" ||
+data.isi==""
+){
+
+
+alert("Judul dan isi wajib diisi");
+
+return;
+
+
+}
+
+
+
+
+
+// hanya satu pengumuman aktif
+
+dataPengumuman=[data];
+
+
+localStorage.setItem(
+
+"dataPengumuman",
+
+JSON.stringify(dataPengumuman)
+
+);
+
+tampilkan();
+
+kosongkan();
+
+alert("Pengumuman berhasil disimpan");
+
+}
+
+function tampilkan(){
+let hasil="";
+
+dataPengumuman.forEach(function(item){
+
+hasil += `
+
+<div class="info">
+
+<h3>
+
+📢 ${item.judul}
+
+</h3>
+<p style="white-space:pre-line;">
+${item.isi}
+</p>
+
+
+<p>
+
+ Dibuat:
+${item.tanggalBuat}
+
+<br>
+
+ Berlaku:
+${formatTanggal(item.mulai)}
+
+s/d
+
+${formatTanggal(item.selesai)}
+
+</p>
+
+<button
+
+class="btn-hapus"
+
+onclick="hapusPengumuman()">
+
+🗑 Hapus
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
+
+
+if(hasil==""){
+
+
+hasil="Belum ada pengumuman aktif";
+
+
+}
+
+
+
+document.getElementById("hasil")
+
+.innerHTML=hasil;
+
+
+
+}
+
+
+
+
+
+
+
+function hapusPengumuman(){
+
+
+if(confirm("Hapus pengumuman?")){
+
+
+localStorage.removeItem(
+
+"dataPengumuman"
+
+);
+
+
+dataPengumuman=[];
+
+
+tampilkan();
+
+
+}
+
+
+}
+
+
+
+
+
+
+function kosongkan(){
+
+
+document.getElementById("judul").value="";
+
+document.getElementById("isi").value="";
+
+document.getElementById("mulai").value="";
+
+document.getElementById("selesai").value="";
+
+
+}
+
+
+
+
+
+tampilkan();
+
+function formatTanggal(tanggal){
+
+if(!tanggal){
+return "-";
+}
+
+return new Date(tanggal).toLocaleDateString("id-ID",{
+
+day:"2-digit",
+
+month:"long",
+
+year:"numeric"
+
+});
+
+}
+
+</script>
+
+
+
+</body>
+
+</html>
