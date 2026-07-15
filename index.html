@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paguyuban Awiluar</title>
+  <script>
+
+if(localStorage.getItem("login") !== "true"){
+
+window.location.href="pages/login.html";
+
+}
+
+window.location.href="pages/login.html";
+
+}
+
+</script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+
+  <!-- LOGO -->
+  <div class="logo-box">
+    <h2>PA</h2>
+    <p>Paguyuban Awiluar</p>
+  </div>
+
+  <!-- MENU UTAMA -->
+  <a href="index.html" class="menu active">
+    <i class="fa fa-home"></i><span>Home</span>
+  </a>
+
+  <a href="pages/profil.html" class="menu">
+    <i class="fa fa-user"></i><span>Profil</span>
+  </a>
+
+  <a href="pages/struktur-organisasi.html" class="menu">
+    <i class="fa fa-sitemap"></i><span>Struktur Organisasi</span>
+  </a>
+
+  <a href="pages/daftar-rumah.html" class="menu">
+    <i class="fa fa-house"></i><span>Daftar Rumah</span>
+  </a>
+
+  <a href="pages/warga.html" class="menu">
+    <i class="fa fa-users"></i><span>Data Warga</span>
+  </a>
+
+  <a href="pages/kas-warga.html" class="menu">
+    <i class="fa fa-money-bill"></i><span>Kas Warga</span>
+  </a>
+  
+  <a href="pages/galeri/index.html" class="menu">
+  <i class="fa fa-image"></i><span>Galeri</span>
+</a>
+
+  <a href="pages/pengumuman.html" class="menu">
+    <i class="fa fa-bullhorn"></i><span>Pengumuman</span>
+  </a>
+
+  <a href="pages/laporan.html" class="menu">
+    <i class="fa fa-file-alt"></i><span>Laporan</span>
+  </a>
+  
+
+  <!-- PEMISAH -->
+  <div style="margin-top:20px;"></div>
+
+  <!-- LOGIN ADMIN (PALING BAWAH) -->
+  <a href="pages/login.html" class="menu login">
+    <i class="fa fa-lock"></i><span>Login Admin</span>
+  </a>
+  <a href="pages/login.html" class="logout-btn">Logout</a>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<div class="content">
+
+  <button class="btn" onclick="toggleMenu()">☰</button>
+
+  <div class="hero-card">
+  <div class="badge">Dashboard</div>
+
+  <h1 class="title">
+      WEBSITE PAGUYUBAN AWILUAR <span></span>
+  </h1>
+
+  <p class="subtitle">
+    Sistem Informasi Warga Awiluar Desa Sindangkempeng-Greged
+  </p>
+</div>
+<!-- DASHBOARD UTAMA -->
+<div class="dashboard">
+  
+
+  <!-- JUMLAH RUMAH -->
+  <div class="card-box">
+
+<i class="fa fa-house"></i>
+
+<h3>Jumlah Rumah</h3>
+
+<p id="jumlahRumah">
+0 Rumah
+</p>
+
+</div>
+
+  <!-- JUMLAH WARGA (GABUNG) -->
+
+<div class="card-box">
+
+<i class="fa fa-users"></i>
+
+<div>
+<span>Jumlah Warga</span>
+<h3 id="jumlahWarga">0 Orang</h3>
+</div>
+
+</div>
+
+
+<div class="card-box">
+
+<i class="fa fa-mars"></i>
+
+<div>
+<span>Laki-laki</span>
+<h3 id="jumlahLaki">0 Orang</h3>
+</div>
+
+</div>
+
+
+<div class="card-box">
+
+<i class="fa fa-venus"></i>
+
+<div>
+<span>Perempuan</span>
+<h3 id="jumlahPerempuan">0 Orang</h3>
+</div>
+
+
+</div>
+  <!-- UANG KAS -->
+  <div class="info-box">
+
+<i class="fa fa-wallet"></i>
+
+<div>
+
+<h3>Kas Warga</h3>
+
+<p id="dashboardKas">
+
+Rp 0
+
+</p>
+
+</div>
+
+</div>
+
+  <!-- PENGUMUMAN -->
+<div class="card-box">
+  <i class="fa fa-bullhorn"></i>
+  <div>
+    <h3 id="jumlahPengumuman">0</h3>
+    <p>Pengumuman</p>
+  </div>
+</div>
+
+</div>
+</div>
+<script src="script.js"></script>
+
+<script>
+
+let daftarRumah = JSON.parse(
+localStorage.getItem("daftarRumah")
+) || [];
+
+
+document.getElementById("jumlahRumah").innerHTML =
+daftarRumah.length + " Rumah";
+
+
+</script>
+
+<script>
+
+let dataWarga = JSON.parse(
+
+localStorage.getItem("dataWarga")
+
+) || [];
+
+
+// jumlah semua warga
+
+document.getElementById("jumlahWarga").innerHTML =
+
+dataWarga.length + " Orang";
+
+
+
+// jumlah laki laki
+
+let laki = dataWarga.filter(function(item){
+
+return item.kelamin == "Laki-laki";
+
+}).length;
+
+
+
+document.getElementById("jumlahLaki").innerHTML =
+
+laki + " Orang";
+
+
+
+
+// jumlah perempuan
+
+let perempuan = dataWarga.filter(function(item){
+
+return item.kelamin == "Perempuan";
+
+}).length;
+
+
+
+document.getElementById("jumlahPerempuan").innerHTML =
+
+perempuan + " Orang";
+
+
+</script>
+
+<script>
+
+
+let dataKas = JSON.parse(
+
+localStorage.getItem("dataKas")
+
+) || [];
+
+
+
+let masuk = 0;
+
+let keluar = 0;
+
+
+
+dataKas.forEach(function(item){
+
+
+let jumlah = Number(item.jumlah);
+
+
+
+if(item.jenis=="Pemasukan"){
+
+
+masuk += jumlah;
+
+
+}else{
+
+
+keluar += jumlah;
+
+
+}
+
+
+});
+
+
+
+
+let saldo = masuk - keluar;
+
+
+
+document.getElementById("dashboardKas").innerHTML =
+
+"Rp " + saldo.toLocaleString("id-ID");
+
+
+
+</script>
+
+<script>
+
+let dataPengumuman = JSON.parse(
+
+localStorage.getItem("dataPengumuman")
+
+) || [];
+
+
+
+document.getElementById("jumlahPengumuman").innerHTML =
+
+dataPengumuman.length;
+
+
+</script>
+
+</body>
+</html>
