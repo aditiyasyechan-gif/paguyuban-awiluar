@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pengumuman</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<a href="../index.html" class="back-btn">
+← Kembali ke Home
+</a>
+
+
+
+<div class="card">
+
+<h2>
+Pengumuman
+</h2>
+
+<p>
+Informasi penting untuk warga
+</p>
+
+</div>
+
+
+
+
+<div class="profile-grid">
+
+
+<div class="profile-grid" id="hasilPengumuman">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+let dataPengumuman = JSON.parse(
+
+localStorage.getItem("dataPengumuman")
+
+) || [];
+
+
+
+
+
+function formatTanggal(tanggal){
+
+
+if(!tanggal){
+
+return "-";
+
+}
+
+
+return new Date(tanggal).toLocaleDateString(
+"id-ID",
+{
+
+day:"2-digit",
+
+month:"long",
+
+year:"numeric"
+
+}
+
+);
+
+
+}
+
+
+
+
+
+let hasil = "";
+
+let sekarang = new Date();
+
+
+
+
+
+dataPengumuman.forEach(function(item){
+
+
+
+let tampil = true;
+
+
+
+// cek masa berlaku
+
+if(item.mulai && item.selesai){
+
+
+let mulai = new Date(item.mulai);
+
+let selesai = new Date(item.selesai);
+
+
+
+if(sekarang < mulai || sekarang > selesai){
+
+tampil = false;
+
+}
+
+
+}
+
+
+
+
+if(tampil){
+
+
+
+hasil += `
+
+
+
+<div class="info-box">
+
+
+<i class="fa fa-bullhorn"></i>
+
+
+
+<div>
+
+
+
+<h3>
+
+📢 ${item.judul}
+
+</h3>
+
+
+
+
+<p>
+
+📅 Dibuat:
+
+<br>
+
+${item.tanggalBuat}
+
+</p>
+
+
+
+
+<p style="white-space:pre-line;">
+
+${item.isi}
+
+</p>
+
+
+
+
+<p>
+
+🗓 Berlaku:
+
+<br>
+
+${formatTanggal(item.mulai)}
+
+s/d
+
+${formatTanggal(item.selesai)}
+
+</p>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+`;
+
+
+
+}
+
+
+
+});
+
+
+
+
+
+if(hasil==""){
+
+
+hasil = `
+
+
+<div class="info-box">
+
+
+<i class="fa fa-bullhorn"></i>
+
+
+<div>
+
+
+<h3>
+
+Belum Ada Pengumuman
+
+</h3>
+
+
+<p>
+
+Saat ini tidak ada pengumuman aktif.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+
+}
+
+
+
+
+
+document.getElementById("hasilPengumuman")
+
+.innerHTML = hasil;
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
